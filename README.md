@@ -1,6 +1,6 @@
-###reducer을 사용해 ToDoList를 만드는 프로젝트입니다.
+### reducer을 사용해 ToDoList를 만드는 프로젝트입니다.
 
-##목표
+## 목표
 
 - Dispatch에 Action을 담아 Reducer에게 보내며, Reducer가 state를 변경해 결과에 반영하는 구조를 가진 todolist 구현하기
 
