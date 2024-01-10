@@ -4,14 +4,28 @@ import HeaderContent from "./components/HeaderContent";
 import styled, { createGlobalStyle } from "styled-components";
 import LocaleSelect from "./LocaleSelect";
 import { LocaleProvider } from "./contexts/LocaleContext";
-import FooterContent from "./components/FooterContent";
+import { theme } from "./styles/Theme"; //prop으로 받아서 사용하기
+import ThemeModeButton from "./components/ThemeModeButton";
 
 const GlobalStyle = createGlobalStyle`
   body{
-    background: ${(props) => (props.isDarkMode ? "#333" : "#fff")};
-    color: ${(props) => (props.isDarkMode ? "#fff" : "#333")};
+    margin: 0;
+    background: ${(props) =>
+      props.isDarkMode
+        ? props.theme.colors.dark_text
+        : props.theme.colors.white_text};
+    color: ${(props) =>
+      props.isDarkMode
+        ? props.theme.colors.white_text
+        : props.theme.colors.dark_text};
     transition: background 0.3s, color 0.3s;
   }
+`;
+
+const NavStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75em 1em;
 `;
 
 const HeaderContainer = styled.div`
@@ -29,7 +43,6 @@ const FlexContainer = styled.div`
 `;
 
 const reducer = (state, action) => {
-  console.log("state, action 을 출력합니다.", state, action);
   switch (action.type) {
     case "add-todo":
       const textTodo = action.payload.textTodo;
@@ -79,10 +92,18 @@ function App() {
   return (
     <LocaleProvider defaultValue={"ko"}>
       <>
-        <LocaleSelect />
-        <GlobalStyle isDarkMode={isDarkMode} />
+        <NavStyle>
+          <LocaleSelect theme={theme} />
+          <ThemeModeButton
+            toggleDarkMode={toggleDarkMode}
+            isDarkMode={isDarkMode}
+            theme={theme}
+          />
+        </NavStyle>
+        <GlobalStyle isDarkMode={isDarkMode} theme={theme} />
         <HeaderContainer>
           <HeaderContent
+            theme={theme}
             textTodo={textTodo}
             setTextTodo={setTextTodo}
             todosInfo={todosInfo}
@@ -103,10 +124,6 @@ function App() {
             );
           })}
         </FlexContainer>
-        <FooterContent
-          toggleDarkMode={toggleDarkMode}
-          isDarkMode={isDarkMode}
-        />
       </>
     </LocaleProvider>
   );

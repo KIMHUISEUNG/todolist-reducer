@@ -16,6 +16,14 @@ const TodoText = styled.span`
     props.isDarkMode ? "#fff" : props.completed ? "gray" : "#333"};
 `;
 
+const Button = styled.button`
+  background-color: #fff;
+  font-size: 1em;
+  padding: 0.25em 0.25em;
+  border: 2px solid #00a62c;
+  border-radius: 3px;
+`;
+
 const Todo = ({ textTodo, dispatch, id, completed, isDarkMode }) => {
   const t = useTranslate();
   console.log("isDarkMode", isDarkMode);
@@ -30,13 +38,13 @@ const Todo = ({ textTodo, dispatch, id, completed, isDarkMode }) => {
       >
         {textTodo}
       </TodoText>
-      <button
+      <Button
         onClick={() => {
           dispatch({ type: "delete-todo", payload: { id } });
         }}
       >
         {t("delete button")}
-      </button>
+      </Button>
     </TodoItem>
   );
 };
