@@ -1,5 +1,32 @@
 import React, { useState, useReducer } from "react";
 import Todo from "./components/Todo";
+import HeaderContent from "./components/HeaderContent";
+import styled, { createGlobalStyle } from "styled-components";
+import LocaleSelect from "./LocaleSelect";
+import { LocaleProvider } from "./contexts/LocaleContext";
+import FooterContent from "./components/FooterContent";
+
+const GlobalStyle = createGlobalStyle`
+  body{
+    background: ${(props) => (props.isDarkMode ? "#333" : "#fff")};
+    color: ${(props) => (props.isDarkMode ? "#fff" : "#333")};
+    transition: background 0.3s, color 0.3s;
+  }
+`;
+
+const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  margin: 24px 20%;
+`;
+const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  align-content: center;
+`;
 
 const reducer = (state, action) => {
   console.log("state, action 을 출력합니다.", state, action);
@@ -43,36 +70,44 @@ const initialList = {
 function App() {
   const [name, setname] = useState("");
   const [todosInfo, dispatch] = useReducer(reducer, initialList);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
-    <div>
-      <h1>Todo List</h1>
-      <p>해야할 일 수 : {todosInfo.count}</p>
-      <input
-        type="text"
-        placeholder="작업을 입력해주세요"
-        value={name}
-        onChange={(e) => setname(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          dispatch({ type: "add-todo", payload: { name } });
-        }}
-      >
-        추가
-      </button>
-      {todosInfo.todos.map((todo) => {
-        return (
-          <Todo
-            key={todo.id}
-            name={todo.name}
+    <LocaleProvider defaultValue={"ko"}>
+      <>
+        <LocaleSelect />
+        <GlobalStyle isDarkMode={isDarkMode} />
+        <HeaderContainer>
+          <HeaderContent
+            name={name}
+            setname={setname}
+            todosInfo={todosInfo}
             dispatch={dispatch}
-            id={todo.id}
-            completed={todo.completed}
           />
-        );
-      })}
-    </div>
+        </HeaderContainer>
+        <FlexContainer>
+          {todosInfo.todos.map((todo) => {
+            return (
+              <Todo
+                key={todo.id}
+                name={todo.name}
+                dispatch={dispatch}
+                id={todo.id}
+                completed={todo.completed}
+              />
+            );
+          })}
+        </FlexContainer>
+        <FooterContent
+          toggleDarkMode={toggleDarkMode}
+          isDarkMode={isDarkMode}
+        />
+      </>
+    </LocaleProvider>
   );
 }
 

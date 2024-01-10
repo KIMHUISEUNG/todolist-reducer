@@ -1,0 +1,12 @@
+header {
+  text-align: center;
+}
+
+.Title {
+  font-size: xx-large;
+}
+
+.TodoInfoBox {
+  display: flex;
+  flex-wrap: wrap;
+}
