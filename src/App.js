@@ -32,10 +32,10 @@ const reducer = (state, action) => {
   console.log("state, action 을 출력합니다.", state, action);
   switch (action.type) {
     case "add-todo":
-      const name = action.payload.name;
+      const textTodo = action.payload.textTodo;
       const newTodo = {
         id: Date.now(),
-        name,
+        textTodo,
         completed: false,
       };
       return {
@@ -68,7 +68,7 @@ const initialList = {
 };
 
 function App() {
-  const [name, setname] = useState("");
+  const [textTodo, setTextTodo] = useState("");
   const [todosInfo, dispatch] = useReducer(reducer, initialList);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -83,8 +83,8 @@ function App() {
         <GlobalStyle isDarkMode={isDarkMode} />
         <HeaderContainer>
           <HeaderContent
-            name={name}
-            setname={setname}
+            textTodo={textTodo}
+            setTextTodo={setTextTodo}
             todosInfo={todosInfo}
             dispatch={dispatch}
           />
@@ -94,10 +94,11 @@ function App() {
             return (
               <Todo
                 key={todo.id}
-                name={todo.name}
+                textTodo={todo.textTodo}
                 dispatch={dispatch}
                 id={todo.id}
                 completed={todo.completed}
+                isDarkMode={isDarkMode}
               />
             );
           })}

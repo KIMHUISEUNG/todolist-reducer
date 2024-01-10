@@ -7,7 +7,7 @@ const dict = {
     "delete button": "삭제",
     "light button": "라이트",
     "dark button": "다크",
-    "switch text": "스위치",
+    "switch text": "모드",
   },
   en: {
     "sub title": "the number of things to do",

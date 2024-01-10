@@ -12,20 +12,23 @@ const TodoItem = styled.div`
 const TodoText = styled.span`
   padding: 12px;
   text-decoration: ${(props) => (props.completed ? "line-through" : "none")};
-  color: ${(props) => (props.completed ? "gray" : "black")};
+  color: ${(props) => (props) =>
+    props.isDarkMode ? "#fff" : props.completed ? "gray" : "#333"};
 `;
 
-const Todo = ({ name, dispatch, id, completed }) => {
+const Todo = ({ textTodo, dispatch, id, completed, isDarkMode }) => {
   const t = useTranslate();
+  console.log("isDarkMode", isDarkMode);
   return (
     <TodoItem>
       <TodoText
+        isDarkMode={isDarkMode}
         completed={completed}
         onClick={() => {
           dispatch({ type: "mark-todo", payload: { id } });
         }}
       >
-        {name}
+        {textTodo}
       </TodoText>
       <button
         onClick={() => {

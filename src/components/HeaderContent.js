@@ -1,7 +1,7 @@
 import React from "react";
 import useTranslate from "../hooks/useTranslate";
 
-const HeaderContent = ({ name, setname, todosInfo, dispatch }) => {
+const HeaderContent = ({ textTodo, setTextTodo, todosInfo, dispatch }) => {
   const t = useTranslate();
   return (
     <>
@@ -13,12 +13,12 @@ const HeaderContent = ({ name, setname, todosInfo, dispatch }) => {
       <input
         type="text"
         placeholder="작업을 입력해주세요"
-        value={name}
-        onChange={(e) => setname(e.target.value)}
+        value={textTodo}
+        onChange={(e) => setTextTodo(e.target.value)}
       />
       <button
         onClick={() => {
-          dispatch({ type: "add-todo", payload: { name } });
+          dispatch({ type: "add-todo", payload: { textTodo } });
         }}
       >
         추가
