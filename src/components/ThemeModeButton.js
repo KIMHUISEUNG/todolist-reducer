@@ -6,7 +6,7 @@ const Button = styled.button`
   background-color: #fff;
   font-size: 1em;
   padding: 0.25em 1em;
-  border: 2px solid ${(props) => props.theme.colors.g3};
+  border: 2px solid ${(props) => props.theme.colors.g2};
   border-radius: 3px;
 
   &:hover {

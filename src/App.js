@@ -1,33 +1,18 @@
 import React, { useState, useReducer } from "react";
+import Helmet from "react-helmet";
 import Todo from "./components/Todo";
 import HeaderContent from "./components/HeaderContent";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import LocaleSelect from "./LocaleSelect";
 import { LocaleProvider } from "./contexts/LocaleContext";
-import { theme } from "./styles/Theme"; //prop으로 받아서 사용하기
+import { theme, GlobalStyle } from "./styles/Theme"; //prop으로 받아서 사용하기
 import ThemeModeButton from "./components/ThemeModeButton";
-
-const GlobalStyle = createGlobalStyle`
-  body{
-    margin: 0;
-    background: ${(props) =>
-      props.isDarkMode
-        ? props.theme.colors.dark_text
-        : props.theme.colors.white_text};
-    color: ${(props) =>
-      props.isDarkMode
-        ? props.theme.colors.white_text
-        : props.theme.colors.dark_text};
-    transition: background 0.3s, color 0.3s;
-  }
-`;
 
 const NavStyle = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.75em 1em;
 `;
-
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,15 +77,21 @@ function App() {
   return (
     <LocaleProvider defaultValue={"ko"}>
       <>
+        <Helmet>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap"
+          />
+        </Helmet>
+        <GlobalStyle $isDarkMode={isDarkMode} theme={theme} />
         <NavStyle>
           <LocaleSelect theme={theme} />
           <ThemeModeButton
             toggleDarkMode={toggleDarkMode}
-            isDarkMode={isDarkMode}
+            $isDarkMode={isDarkMode}
             theme={theme}
           />
         </NavStyle>
-        <GlobalStyle isDarkMode={isDarkMode} theme={theme} />
         <HeaderContainer>
           <HeaderContent
             theme={theme}
@@ -119,7 +110,8 @@ function App() {
                 dispatch={dispatch}
                 id={todo.id}
                 completed={todo.completed}
-                isDarkMode={isDarkMode}
+                $isDarkMode={isDarkMode}
+                theme={theme}
               />
             );
           })}

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Button = styled.button`
   background-color: #fff;
+  font-family: "Dongle", sans-serif;
   font-size: 1em;
   margin: 1em 0em;
   padding: 0.25em 1em;
@@ -13,6 +14,16 @@ const Button = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.colors.g1};
   }
+`;
+const Title = styled.h1`
+  font-size: 5em;
+  font-weight: ${(props) => props.theme.weight.blod};
+  margin: 0.25em 1em;
+`;
+const Count = styled.p`
+  font-size: ${(props) => props.theme.emSize.em3};
+  font-weight: ${(props) => props.theme.weight.regular};
+  margin: ${(props) => props.theme.emSize.em1};
 `;
 
 const HeaderContent = ({
@@ -25,10 +36,10 @@ const HeaderContent = ({
   const t = useTranslate();
   return (
     <>
-      <h1>Todo List</h1>
-      <p>
+      <Title theme={theme}>Todo List</Title>
+      <Count theme={theme}>
         {t("sub title")} : {todosInfo.count}
-      </p>
+      </Count>
 
       <input
         type="text"
