@@ -5,11 +5,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Dongle', sans-serif;
     margin: 0;
     background: ${(props) =>
-      props.isDarkMode
+      props.$isDarkMode
         ? props.theme.colors.dark_text
         : props.theme.colors.white_text};
     color: ${(props) =>
-      props.isDarkMode
+      props.$isDarkMode
         ? props.theme.colors.white_text
         : props.theme.colors.dark_text};
     transition: background 0.3s, color 0.3s;

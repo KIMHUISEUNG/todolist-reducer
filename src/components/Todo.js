@@ -11,28 +11,28 @@ const TodoItem = styled.div`
 
 const TodoText = styled.span`
   padding: 12px;
-  text-decoration: ${(props) => (props.completed ? "line-through" : "none")};
-  color: ${(props) => (props) =>
-    props.isDarkMode ? "#fff" : props.completed ? "gray" : "#333"};
+  text-decoration: ${(props) => (props.$completed ? "line-through" : "none")};
+  color: ${(props) =>
+    props.$isDarkMode ? "#fff" : props.$completed ? "gray" : "#333"};
 `;
 
 const Button = styled.button`
   background-color: #fff;
-  font-size: 1em;
+  font-size: 0.75em;
   padding: 0.25em 0.25em;
   border: 2px solid ${(props) => props.theme.colors.g2};
   border-radius: 3px;
 `;
 
-const Todo = ({ textTodo, dispatch, id, completed, isDarkMode, theme }) => {
+const Todo = ({ textTodo, dispatch, id, $completed, $isDarkMode, theme }) => {
   const t = useTranslate();
-  console.log("isDarkMode", isDarkMode);
-  console.log("isDarkMode", isDarkMode);
+  console.log("isDarkMode", $isDarkMode);
+  console.log("completed", $completed);
   return (
     <TodoItem>
       <TodoText
-        isDarkMode={isDarkMode}
-        completed={completed}
+        $isDarkMode={$isDarkMode}
+        $completed={$completed}
         onClick={() => {
           dispatch({ type: "mark-todo", payload: { id } });
         }}

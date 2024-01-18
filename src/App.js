@@ -109,7 +109,7 @@ function App() {
                 textTodo={todo.textTodo}
                 dispatch={dispatch}
                 id={todo.id}
-                completed={todo.completed}
+                $completed={todo.completed}
                 $isDarkMode={isDarkMode}
                 theme={theme}
               />
