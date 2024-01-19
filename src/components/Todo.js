@@ -11,6 +11,7 @@ const TodoItem = styled.div`
 
 const TodoText = styled.span`
   padding: 12px;
+  font-size: ${(props) => props.theme.emSize.em3};
   text-decoration: ${(props) => (props.$completed ? "line-through" : "none")};
   color: ${(props) =>
     props.$isDarkMode ? "#fff" : props.$completed ? "gray" : "#333"};
@@ -33,6 +34,7 @@ const Todo = ({ textTodo, dispatch, id, $completed, $isDarkMode, theme }) => {
       <TodoText
         $isDarkMode={$isDarkMode}
         $completed={$completed}
+        theme={theme}
         onClick={() => {
           dispatch({ type: "mark-todo", payload: { id } });
         }}

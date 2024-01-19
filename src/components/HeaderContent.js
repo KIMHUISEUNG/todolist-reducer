@@ -10,6 +10,7 @@ const Button = styled.button`
   padding: 0em 0.25em;
   border: 2px solid ${(props) => props.theme.colors.g4};
   border-radius: 3px;
+  width: 10%
 
   &:hover {
     background-color: ${(props) => props.theme.colors.g2};
@@ -30,10 +31,11 @@ const InputBoxContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   padding: 0.75em 1em;
+  gap: 20px 1%;
 `;
 const InputToDo = styled.input`
   padding: 1em;
-  width: 25em;
+  width: 80%;
 `;
 
 const HeaderContent = ({
@@ -72,7 +74,7 @@ const HeaderContent = ({
               required: true,
               minLength: 2,
               maxLength: 50,
-              pattern: /^[A-Za-zㄱ-ㅎ가-힣]+$/i,
+              pattern: /^[A-Za-zㄱ-ㅎ가-힣0-9\s]+$/i,
             })}
           />
 

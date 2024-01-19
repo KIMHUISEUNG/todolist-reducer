@@ -9,11 +9,11 @@ Styled Components 라이브러리를 적용하면서 많은 콘솔 경고 문구
 
 - Dispatch에 Action을 담아 Reducer에게 보내며, Reducer가 state를 변경해 결과에 반영하는 구조를 가진 todolist 구현하기
 
-추가 목표
+#### 추가 목표
 
 1. 국제화 버튼 디자인 적용하기
 
-구현 완료된 기능
+#### 구현 완료된 기능
 
 1. 다크모드
 2. 반응형
@@ -24,3 +24,6 @@ Styled Components 라이브러리를 적용하면서 많은 콘솔 경고 문구
    > 5-1. 불필요한 내부 변수 DOM에 전달 안하기
 6. react-hook-form 라이브러리 적용
    > 6-1. 유효성(validation) 검사 기능 적용
+
+<img src="./src/assets/en_todo.png" width="450px" height="300px" title="Todo List 이미지" alt="White_Todo"></img><br/>
+<img src="./src/assets/ko_todo.png" width="450px" height="300px" title="Todo List 이미지" alt="Dark_Todo"></img><br/>
